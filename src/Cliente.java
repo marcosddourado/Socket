@@ -10,14 +10,15 @@ public class Cliente {
 
 		Scanner teclado = new Scanner(System.in);
 		PrintStream saida = new PrintStream(cliente.getOutputStream());
+		Scanner inputServidor = new Scanner(cliente.getInputStream());
 
-		while (teclado.hasNextLine()) {
+		while (true) {
 			saida.println(teclado.nextLine());
-					
+			System.out.println("server: " + inputServidor.nextLine());	
 		}
 
-		saida.close();
-		teclado.close();
-		cliente.close();
+//		saida.close();
+//		teclado.close();
+//		cliente.close();
 	}
 }
