@@ -25,16 +25,29 @@ public class Servidor {
 			int num1 = Integer.parseInt(parts[NUMERO1]);
 			int num2 = Integer.parseInt(parts[NUMERO2]);
 
-			if (parts[OPERACAO].equals("add")) {
-				int soma = num1 + num2;
-				saida.println("0 " +  soma);
-				System.out.println("0 " + soma);
-			}
-
+			analisarRequisicao(saida, parts, num1, num2);
 		}
 
 		inputCliente.close();
 		servidor.close();
 		cliente.close();
+	}
+
+	private static void analisarRequisicao(PrintStream saida, String[] parts, int num1, int num2) {
+		if (parts[OPERACAO].equals("add")) {
+			int soma = num1 + num2;
+			saida.println("0 " + soma);
+		} else if (parts[OPERACAO].equals("sub")) {
+			int sub = num1 - num2;
+			saida.println("0 " + sub);
+		} else if (parts[OPERACAO].equals("mul")) {
+			int mul = num1 * num2;
+			saida.println("0 " + mul);
+		} else if (parts[OPERACAO].equals("div") && num2 != 0) {
+			int div = num1/num2;
+			saida.println("0 " + div);
+		} else {
+			saida.println("1");
+		}
 	}
 }
